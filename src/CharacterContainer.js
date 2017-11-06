@@ -13,19 +13,19 @@ class CharacterContainer extends React.Component {
 		}
 	}
 
-	// handleChange = (e) => {
-	// 	e.preventDefault();
-	// 	this.setState({
-	// 		searchTerm: e.target.value
-	// 	})
-	// }
+	handleChange = (e) => {
+		e.preventDefault();
+		this.setState({
+			searchTerm: e.target.value
+		})
+		console.log(e.target.value)
+	}
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 		this.setState({
 			searchTerm: e.target.value
 		})
-
 		console.log(this.state)
 	}
 
@@ -33,7 +33,8 @@ class CharacterContainer extends React.Component {
 		fetch("https://ghibliapi.herokuapp.com/species")
 		.then(res => res.json())
 		.then(json => this.setState({
-			characters: json
+			characters: json,
+			searchTerm: this.state.searchTerm
 		}))
 	}
 
