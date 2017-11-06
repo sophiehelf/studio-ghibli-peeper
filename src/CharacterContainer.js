@@ -8,6 +8,8 @@ class CharacterContainer extends React.Component {
 		super()
 
 		this.state = {
+			filtered: false,
+			filteredCharacters: [],
 			characters: [],
 			searchTerm: ""
 		}
@@ -23,15 +25,23 @@ class CharacterContainer extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-		var toRender = this.state.characters
 		var searchTerm = this.state.searchTerm
-		toRender = toRender.filter((character) => {
-			return character.classification === searchTerm || character.name === searchTerm
+		var toFilter = []
+		this.state.filtered = true;
+		this.state.characters.map((character) => {
+			if (character.name === searchTerm || character.classification === searchTerm) {
+				toFilter.push(character)
+			}
 		})
 		this.setState({
-			characters: toRender
+			filteredCharacters: toFilter
 		})
+		console.log(toFilter)
 	}
+
+	// handleOnSubmit2 = (e) =>{
+
+	// }
 
 	componentWillMount() {
 		fetch("https://ghibliapi.herokuapp.com/species")
@@ -46,7 +56,7 @@ class CharacterContainer extends React.Component {
 		return(
 			<div>
 			<h2>Studio Ghibli Thingy!</h2>
-			<CharacterList characters={this.state.characters} searchTerm={this.state.searchTerm} />
+			<CharacterList characters={this.state.filtered ? this.state.filteredCharacters : this.state.characters} searchTerm={this.state.searchTerm} />
 			<br />
 			<SearchBar onSubmit={this.handleOnSubmit} onChange={this.handleChange}/>
 			</div>
