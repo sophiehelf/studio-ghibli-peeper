@@ -7,9 +7,15 @@ class AddCharacter extends React.Component {
 
 	render() {
 		return(
+			<div>
+			<p>Add a character!</p>
 			<form onSubmit={this.props.submitNewCharacter}>
 				<input type="text" />
+				<button type="submit">Submit!!!!!</button>
 			</form>
+			</div>
 		)
 	}
 }
+
+export default AddCharacter

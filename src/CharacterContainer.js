@@ -2,6 +2,7 @@ import React from 'react'
 import CharacterList from './CharacterList'
 import Character from './Character'
 import SearchBar from './SearchBar'
+import AddCharacter from './AddCharacter'
 
 class CharacterContainer extends React.Component {
 	constructor() {
@@ -23,6 +24,7 @@ class CharacterContainer extends React.Component {
 		console.log(e.target.value)
 	}
 
+
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 		var searchTerm = this.state.searchTerm
@@ -39,18 +41,24 @@ class CharacterContainer extends React.Component {
 		console.log(toFilter)
 	}
 
-	// handleOnSubmit2 = (e) =>{
 
-	// }
+	handleOnSubmit2 = (e) =>{
+		e.preventDefault();
+		console.log(e.target.value)
+	}
+
 
 	componentWillMount() {
 		fetch("https://ghibliapi.herokuapp.com/species")
 		.then(res => res.json())
 		.then(json => this.setState({
 			characters: json,
-			searchTerm: this.state.searchTerm
+			searchTerm: this.state.searchTerm,
+			filtered: false
 		}))
 	}
+
+	////////
 
 	render() {
 		return(
@@ -59,6 +67,8 @@ class CharacterContainer extends React.Component {
 			<CharacterList characters={this.state.filtered ? this.state.filteredCharacters : this.state.characters} searchTerm={this.state.searchTerm} />
 			<br />
 			<SearchBar onSubmit={this.handleOnSubmit} onChange={this.handleChange}/>
+			<br />
+			<AddCharacter submitNewCharacter={this.handleOnSubmit2} />
 			</div>
 		)
 	}
