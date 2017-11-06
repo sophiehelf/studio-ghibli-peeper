@@ -12,7 +12,8 @@ class CharacterContainer extends React.Component {
 			filtered: false,
 			filteredCharacters: [],
 			characters: [],
-			searchTerm: ""
+			searchTerm: "",
+			newCharacter: ""
 		}
 	}
 
@@ -44,9 +45,17 @@ class CharacterContainer extends React.Component {
 
 	handleOnSubmit2 = (e) =>{
 		e.preventDefault();
-		console.log(e.target.value)
+		this.state.characters.push(this.state.newCharacter)
+		console.log(this.state.characters)
 	}
 
+	handleChange2 = (e) => {
+		e.preventDefault();
+		this.setState({
+			newCharacter: e.target.value
+		})
+		console.log(this.state.newCharacter)
+	}
 
 	componentWillMount() {
 		fetch("https://ghibliapi.herokuapp.com/species")
@@ -58,6 +67,7 @@ class CharacterContainer extends React.Component {
 		}))
 	}
 
+
 	////////
 
 	render() {
@@ -66,9 +76,9 @@ class CharacterContainer extends React.Component {
 			<h2>Studio Ghibli Thingy!</h2>
 			<CharacterList characters={this.state.filtered ? this.state.filteredCharacters : this.state.characters} searchTerm={this.state.searchTerm} />
 			<br />
-			<SearchBar onSubmit={this.handleOnSubmit} onChange={this.handleChange}/>
+			<SearchBar onSubmit={this.handleOnSubmit} onChange={this.handleChange} />
 			<br />
-			<AddCharacter submitNewCharacter={this.handleOnSubmit2} />
+			<AddCharacter submitNewCharacter={this.handleOnSubmit2} onChange={this.handleChange2}/>
 			</div>
 		)
 	}

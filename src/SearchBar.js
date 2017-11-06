@@ -14,7 +14,6 @@ class SearchBar extends React.Component {
 			<input type="text" onChange={this.props.onChange}/>
 			<button type="submit">Search!!!</button>
 			</form>
-			
 		</div>
 		)
 	}

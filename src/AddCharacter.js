@@ -9,7 +9,7 @@ class AddCharacter extends React.Component {
 		return(
 			<div>
 			<p>Add a character!</p>
-			<form onSubmit={this.props.submitNewCharacter}>
+			<form onSubmit={this.props.submitNewCharacter} onChange={this.props.onChange}>
 				<input type="text" />
 				<button type="submit">Submit!!!!!</button>
 			</form>
