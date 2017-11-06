@@ -13,17 +13,20 @@ class CharacterContainer extends React.Component {
 		}
 	}
 
-	handleOnSubmit = (e) => {
-		e.preventDefault()
-		console.log(e.target)
-	}
+	// handleChange = (e) => {
+	// 	e.preventDefault();
+	// 	this.setState({
+	// 		searchTerm: e.target.value
+	// 	})
+	// }
 
-	handleChange = (e) => {
+	handleOnSubmit = (e) => {
 		e.preventDefault();
 		this.setState({
 			searchTerm: e.target.value
 		})
-		console.log(this.state.searchTerm)
+
+		console.log(this.state)
 	}
 
 	componentWillMount() {
