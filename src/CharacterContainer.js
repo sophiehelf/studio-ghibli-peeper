@@ -23,17 +23,14 @@ class CharacterContainer extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-		var toRender = []
+		var toRender = this.state.characters
 		var searchTerm = this.state.searchTerm
-		this.state.characters.map((character) => {
-			if (character.name === searchTerm || character.classification === searchTerm) {
-				toRender.push(character)
-				this.setState({
-					characters: toRender
-				})
-			}
+		toRender = toRender.filter((character) => {
+			return character.classification === searchTerm || character.name === searchTerm
 		})
-		console.log(this.state)
+		this.setState({
+			characters: toRender
+		})
 	}
 
 	componentWillMount() {
