@@ -23,8 +23,15 @@ class CharacterContainer extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-		this.setState({
-			searchTerm: e.target.value
+		var toRender = []
+		var searchTerm = this.state.searchTerm
+		this.state.characters.map((character) => {
+			if (character.name === searchTerm || character.classification === searchTerm) {
+				toRender.push(character)
+				this.setState({
+					characters: toRender
+				})
+			}
 		})
 		console.log(this.state)
 	}
